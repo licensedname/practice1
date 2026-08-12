@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>portfolio.dev</title>
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #050505;
+            color: #d4d4d4;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .site {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid #242424;
+
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            border: 1px solid #555;
+            padding: 6px 9px;
+
+            color: white;
+            font-weight: bold;
+
+            background: #080808;
+        }
+
+        .logo::before {
+            content: "$ ";
+            color: #888;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #999;
+            transition: 0.15s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav a:first-child {
+            color: white;
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 1px;
+
+            background: #222;
+            border: 1px solid #222;
+        }
+
+
+        /* =========================
+           PANELS
+        ========================= */
+
+        .panel {
+            background: #050505;
+
+            border: 0;
+
+            padding: 15px;
+
+            min-width: 0;
+        }
+
+        .panel-title {
+            color: #777;
+
+            margin-bottom: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: #242424;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            min-height: 420px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 35px;
+        }
+
+        .ascii {
+            color: white;
+            font-size: 14px;
+            line-height: 1.05;
+
+            white-space: pre;
+
+            width: 100px;
+        }
+
+        .profile {
+            flex: 1;
+        }
+
+        .username {
+            font-size: 16px;
+            font-weight: bold;
+
+            color: white;
+
+            margin-bottom: 28px;
+
+            border-bottom: 1px solid #444;
+
+            width: 225px;
+
+            padding-bottom: 8px;
+        }
+
+        .info {
+            display: grid;
+
+            grid-template-columns: 90px 1fr;
+
+            row-gap: 12px;
+        }
+
+        .info-label {
+            color: white;
+        }
+
+        .info-value {
+            color: #aaa;
+        }
+
+
+        /* =========================
+           FAKE BRIGHTNESS BAR
+        ========================= */
+
+        .brightness {
+            margin-top: 25px;
+
+            height: 13px;
+
+            display: flex;
+        }
+
+        .brightness span {
+            flex: 1;
+        }
+
+        .brightness span:nth-child(1) {
+            background: #202020;
+        }
+
+        .brightness span:nth-child(2) {
+            background: #303030;
+        }
+
+        .brightness span:nth-child(3) {
+            background: #555;
+        }
+
+        .brightness span:nth-child(4) {
+            background: #777;
+        }
+
+        .brightness span:nth-child(5) {
+            background: #999;
+        }
+
+        .brightness span:nth-child(6) {
+            background: #bbb;
+        }
+
+        .brightness span:nth-child(7) {
+            background: #ddd;
+        }
+
+        .freelance {
+            margin-top: 18px;
+
+            padding-top: 17px;
+
+            border-top: 1px dashed #292929;
+
+            color: #aaa;
+        }
+
+        .freelance a {
+            color: #ddd;
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           DISCORD
+        ========================= */
+
+        .discord {
+            min-height: 420px;
+        }
+
+        .discord-user {
+            color: white;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .status {
+            float: right;
+
+            color: #bbb;
+            font-weight: normal;
+        }
+
+        .status::before {
+            content: "";
+
+            display: inline-block;
+
+            width: 8px;
+            height: 8px;
+
+            background: #ddd;
+
+            margin-right: 6px;
+        }
+
+        .discord-card {
+            display: flex;
+
+            gap: 12px;
+
+            border-bottom: 1px solid #222;
+
+            padding-bottom: 18px;
+        }
+
+        .discord-avatar {
+            width: 52px;
+            height: 52px;
+
+            background:
+                linear-gradient(135deg, #ddd, #444);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: black;
+
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .discord-info {
+            flex: 1;
+        }
+
+        .activity {
+            color: white;
+            margin-bottom: 7px;
+        }
+
+        .activity-description {
+            color: #777;
+
+            line-height: 1.4;
+        }
+
+        .no-activity {
+            color: #555;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           LANGUAGE STATS
+        ========================= */
+
+        .languages {
+            min-height: 330px;
+        }
+
+        .language {
+            display: grid;
+
+            grid-template-columns: 55px 1fr 50px;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 14px;
+        }
+
+        .language-name {
+            color: #ddd;
+        }
+
+        .bar {
+            height: 12px;
+
+            background: #292929;
+
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+
+            background: #aaa;
+        }
+
+        .hours {
+            text-align: right;
+
+            color: #aaa;
+        }
+
+        .total {
+            border-top: 1px dashed #292929;
+
+            margin-top: 20px;
+            padding-top: 16px;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #777;
+        }
+
+        .total strong {
+            color: white;
+        }
+
+
+        /* =========================
+           FEATURED PROJECT
+        ========================= */
+
+        .projects {
+            min-height: 330px;
+        }
+
+        .project {
+            position: relative;
+
+            height: 290px;
+
+            overflow: hidden;
+
+            border: 1px solid #222;
+
+            background: #111;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: 0.9;
+
+            filter: grayscale(100%);
+        }
+
+        .project-overlay {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            padding: 15px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,0.95)
+                );
+        }
+
+        .project-name {
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .project-description {
+            color: #aaa;
+        }
+
+        .project-arrow {
+            position: absolute;
+
+            right: 10px;
+            bottom: 10px;
+
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #080808;
+
+            border: 1px solid #333;
+
+            color: white;
+
+            transition: 0.15s;
+        }
+
+        .project-arrow:hover {
+            background: #222;
+        }
+
+
+        /* =========================
+           BLOG
+        ========================= */
+
+        .blog {
+            min-height: 150px;
+        }
+
+        .blog-title {
+            color: white;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .blog-meta {
+            color: #888;
+
+            margin-bottom: 10px;
+        }
+
+        .blog-description {
+            color: #aaa;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           NOW WORKING ON
+        ========================= */
+
+        .now {
+            min-height: 150px;
+        }
+
+        .now-item {
+            display: flex;
+
+            gap: 10px;
+
+            color: #aaa;
+
+            margin-bottom: 13px;
+        }
+
+        .now-item::before {
+            content: ">";
+
+            color: white;
+        }
+
+        .now-item span {
+            color: white;
+        }
+
+
+        /* =========================
+           HOVER EFFECTS
+        ========================= */
+
+        .panel {
+            transition: background 0.15s;
+        }
+
+        .panel:hover {
+            background: #070707;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 10px;
+            }
+
+            header {
+                height: auto;
+
+                padding: 10px 0;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+            nav {
+                gap: 15px;
+
+                flex-wrap: wrap;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                gap: 15px;
+            }
+
+            .ascii {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="site">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+            portfolio.dev
+        </div>
+
+        <nav>
+            <a href="#">home</a>
+            <a href="Blog.html">blog</a>
+            <a href="https://discord.gg/ZWKD9WpZTc" target = "_blank">Portfolio</a>
+            <a href="https://namedsheep.straw.page" target="_blank">strawpage</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard">
+
+
+        <!-- ABOUT -->
+
+        <section class="panel about">
+
+            <div class="panel-title">
+                0: ~/about
+            </div>
+
+            <div class="about-content">
+
+                <div class="ascii">
+(\_/)
+(•_•)
+(>🧨
+                </div>
+
+                <div class="profile">
+
+                    <div class="username">
+                        licensedname/namedsheep
+                    </div>
+
+                    <div class="info">
+
+                        <div class="info-label">os</div>
+                        <div class="info-value">
+                            Windows 11 x86_64
+                        </div>
+
+                        
+                        <div class="info-label">Mindset</div>
+                        <div class="info-value">
+                            INSANE JARVIS
+                        </div>
+                        
+
+                        <div class="info-label">money</div>
+                        <div class="info-value">
+                            big as hell
+                        </div>
+
+                        <div class="info-label">editor</div>
+                        <div class="info-value">
+                            vscode
+                        </div>
+
+                        <div class="info-label">uptime</div>
+                        <div class="info-value">
+                            6months animating
+                        </div>
+
+                        <div class="info-label">stack</div>
+                        <div class="info-value">
+                            NOTHING started html and css today
+                        </div>
+
+                        <div class="info-label">active</div>
+                        <div class="info-value">
+                            NONE they dont even count as langs
+                        </div>
+
+                        <div class="info-label">timezone</div>
+                        <div class="info-value">
+                            Gmt/ Gmt+1
+                        </div>
+
+                    </div>
+
+
+                    
+
+
+                    <div class="freelance">
+                       open to commisions →
+                        <a href="mailto:wchxmistry@gmail.com">
+                            wchxmistry@gmail.com
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DISCORD -->
+
+        <section class="panel discord">
+
+            <div class="panel-title">
+                1: ~/discord/presence
+            </div>
+
+            <div class="discord-user">
+
+                @namedsheep
+
+                <span class="status">
+                    Do Not Disturb
+                </span>
+
+            </div>
+
+            <div class="discord-card">
+
+                <div class="discord-avatar">
+                     <img
+                    class="project-image"
+                    src="https://media.discordapp.net/attachments/1465850439236059392/1535551168921477230/IMG_1370.png?ex=6a7e1bb7&is=6a7cca37&hm=4d5f93034470d2efda0dea4527d030ed0c4c26898efbe18a639615dcbed7c7cb&=&format=webp&quality=lossless&width=1024&height=1024"
+                    alt="Project"
+                >
+                    
+                </div>
+
+                <div class="discord-info">
+
+                    <div class="activity">
+                        building something cool
+                    </div>
+
+                    <div class="activity-description">
+                        currently doing animation commisions freelance
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="no-activity">
+                Im sitting playing JJS right now or im in blender animating
+            </div>
+
+        </section>
+
+
+
+        <!-- LANGUAGE STATS -->
+
+        <section class="panel languages">
+
+            <div class="panel-title">
+                2: ~/coding/totals
+            </div>
+
+
+            <div class="language">
+
+                <div class="language-name">
+                    Blender
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width: 92%;">
+                    </div>
+                </div>
+
+                <div class="hours">
+                    205h
+                </div>
+
+            </div>
+
+
+            <div class="language">
+
+                <div class="language-name">
+                    .lua
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width: 48%;">
+                    </div>
+                </div>
+
+                <div class="hours">
+                    30h
+                </div>
+
+            </div>
+
+
+            <div class="language">
+
+                <div class="language-name">
+                    html + css
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width: 32%;">
+                    </div>
+                </div>
+
+                <div class="hours">
+                    2h
+                </div>
+
+            </div>
+
+
+            
+
+
+            
+
+            <div class="total">
+
+                <span>
+                    total
+                </span>
+
+                <strong>
+                    237hrs total spent creating
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FEATURED PROJECT -->
+
+        <section class="panel projects">
+
+            <div class="panel-title">
+                3: ~/projects/featured
+            </div>
+
+            <div class="project">
+
+                <!-- Replace this URL with your own image -->
+                <img
+                    class="project-image"
+                    src="https://media.discordapp.net/attachments/1465850439236059392/1535551168921477230/IMG_1370.png?ex=6a7e1bb7&is=6a7cca37&hm=4d5f93034470d2efda0dea4527d030ed0c4c26898efbe18a639615dcbed7c7cb&=&format=webp&quality=lossless&width=1024&height=1024"
+                    alt="Project"
+                >
+
+                <div class="project-overlay">
+
+                    <div class="project-name">
+                        project.exe
+                    </div>
+
+                    <div class="project-description">
+                        recreation of ihamirus web project
+                    </div>
+
+                </div>
+
+                <a href="#" class="project-arrow">
+                    -_-
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BLOG -->
+
+        <section class="panel blog">
+
+            <div class="panel-title">
+                4: ~/blog/recent
+            </div>
+
+            <div class="blog-title">
+                Learning FrontEnd development
+            </div>
+
+            <div class="blog-meta">
+                2026.08.12
+            </div>
+
+            <div class="blog-description">
+                This is a recreation of ihamirus portfolio website 
+                this currently involves nothing else but html and css
+                but it's for the sake of practice and further improvement.
+                creds to @ihamiru this is just a straight copy but worse
+            </div>
+
+        </section>
+
+
+
+        <!-- NOW -->
+
+        <section class="panel now">
+
+            <div class="panel-title">
+                5: ~/now
+            </div>
+
+            <div class="now-item">
+                building <span>A web portal</span>
+            </div>
+
+            <div class="now-item">
+                learning <span>html, CSS, JS</span>
+            </div>
+
+            <div class="now-item">
+                currently <span>Animation commissions </span>
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>
